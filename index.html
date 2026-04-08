@@ -711,18 +711,18 @@
     }
 
     .drop-image-row{
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 16px;
       width: min(94vw, 720px);
       pointer-events: none;
-      flex-wrap: wrap;
+      justify-items: center;
+      align-items: start;
     }
 
     .drop-image{
-      width: min(200px, 28vw);
-      max-width: 220px;
+      width: 100%;
+      max-width: 340px;
       border-radius: 24px;
       border: 4px solid rgba(255,255,255,0.95);
       box-shadow: 0 32px 80px rgba(0,0,0,0.35), 0 0 30px rgba(255,77,109,0.25);
@@ -732,9 +732,10 @@
       animation: dropImage 1.1s cubic-bezier(0.16,1.2,0.58,1) forwards;
       backdrop-filter: blur(4px);
     }
-    .drop-image:nth-child(1){ animation-delay: 0.12s; }
-    .drop-image:nth-child(2){ animation-delay: 0.28s; }
-    .drop-image:nth-child(3){ animation-delay: 0.44s; }
+    .drop-image:nth-child(1){ animation-delay: 0.12s; grid-column: 1; grid-row: 1; }
+    .drop-image:nth-child(2){ animation-delay: 0.28s; grid-column: 1; grid-row: 2; }
+    .drop-image:nth-child(3){ animation-delay: 0.44s; grid-column: 2; grid-row: 2; }
+    .drop-image:nth-child(4){ animation-delay: 0.60s; grid-column: 2; grid-row: 1; }
 
     @keyframes dropImage{
       0%{ opacity:0; transform: translateY(-240%) scale(0.85) rotate(-8deg); }
@@ -1274,6 +1275,7 @@
         message.className = "final-message";
         message.innerHTML = `
           <h2>🎉 Happy Birthday Sushmaaa🐼 🎂</h2>
+          <p class="greeting-line">May all your dreams come true and your year be filled with joy.</p>
           <p>All candles are out — now the surprise begins with gifts, music, and lots of love. You deserve all the happiness today and always!</p>
         `;
         overlay.appendChild(message);
